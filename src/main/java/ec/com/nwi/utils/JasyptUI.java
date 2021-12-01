@@ -1,39 +1,69 @@
 package ec.com.nwi.utils;
 
-import javax.swing.*;
-import java.util.Arrays;
+import com.alee.laf.WebLookAndFeel;
+import com.alee.skin.modena.ModenaSkin;
 
-public class JasyptUI extends JFrame {
+import javax.swing.*;
+
+public class JasyptUI extends JFrame{
     private JTextField txtUsuario;
     private JTextField txtClave;
     private JTextField txtUrl;
-    private JTextField txtLlave;
     private JButton btnGenerar;
     private JButton btnLimpiar;
     private JPanel jpJasypt;
+    private JPasswordField passwordField1;
+    private JTextArea txtResultado;
 
     public JasyptUI() {
-        setContentPane(jpJasypt);
-//        setTitle("asd");
-        setSize(500, 300);
+        setTitle("N.W.I");
+        add(jpJasypt);
+        setTitle("N.W.I");
+        setSize(500, 350);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        pack();
+        validate();
+
         setVisible(true);
-        UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
-        Arrays.stream(looks).map(UIManager.LookAndFeelInfo::getClassName).forEach(System.out::println);
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void main(String[] args) {
-        JasyptUI jasyptUI = new JasyptUI();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                // Install WebLaF as application LaF
+//                WebLookAndFeel.install();
+                new JasyptUI();
+                // You can also specify preferred skin right-away
+//                 WebLookAndFeel.install ( WebDarkSkin.class );
+                WebLookAndFeel.install(ModenaSkin.class);
+
+                // You can also do that in one of the old-fashioned ways
+                // UIManager.setLookAndFeel ( new WebLookAndFeel () );
+                // UIManager.setLookAndFeel ( "com.alee.laf.WebLookAndFeel" );
+                // UIManager.setLookAndFeel ( WebLookAndFeel.class.getCanonicalName () );
+
+                // You can also configure other WebLaF managers as you like now
+                // StyleManager
+                // SettingsManager
+                // LanguageManager
+                // ...
+
+                // Initialize your application once you're done setting everything up
+//                JFrame frame = new JFrame("N.W.I");
+
+
+
+
+                // You can also use Web* components to get access to some extended WebLaF features
+                // WebFrame frame = ...
+
+            }
+        });
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
